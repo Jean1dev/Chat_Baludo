@@ -13,10 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import baludo.chat.com.br.chat_baludo.DataBase.SQLiteHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        entrar = (Button) findViewById(R.id.btnCadastrar);
+        entrar = (Button) findViewById(R.id.btn_entrar);
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,11 +79,50 @@ public class MainActivity extends AppCompatActivity {
                                     if(result.get("retorno").getAsInt() > 0){
                                         SharedPreferences.Editor preferences = getSharedPreferences("USER_INFORMATION", MODE_PRIVATE).edit();
                                         preferences.putInt("id_usuario", result.get("retorno").getAsInt());
+                                        preferences.putString("nome_usuario", result.get("nome_usuario").getAsString());
+                                        preferences.putString("email_usuario", result.get("email_usuario").getAsString());
+                                        preferences.putString("foto_usuario", result.get("foto_usuario").getAsString());
+                                        preferences.commit();
+
+                                        SaveContact(result.get("retorno").getAsInt());
+
+                                        showChat();
+                                    }else{
+                                        Toast.makeText(MainActivity.this, "Erro", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 }
             }
         });
+    }
+
+    private void showChat(){
+        SharedPreferences preferences = getSharedPreferences("USER_INFORMATION", MODE_PRIVATE);
+        if (preferences.getInt("id_usuario", 0) > 0) {
+            Intent it = new Intent(MainActivity.this, ChatsActivity.class);
+            startActivity(it);
+            finish();
+        }
+    }
+
+    private void SaveContact(final int id){
+        String URL = "http://localhost/chat/metodo";
+
+        Ion.with(getBaseContext())
+                .load(URL)
+                .setBodyParameter("id_user", String.valueOf(id))
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        for (int i = 0; i < result.size(); i++){
+                            JsonObject obj = result.get(i).getAsJsonObject();
+                            //JSON COM TODOS OS CONTATOS BUSCADOS DO BANCO
+                            SQLiteHelper db = new SQLiteHelper(getBaseContext());
+                            db.save_contact(id, Integer.parseInt(obj.get("id_usuario").getAsString()), obj.get("nome_usuario").getAsString(), obj.get("photo_usuario").getAsString());
+                        }
+                    }
+                });
     }
 }
