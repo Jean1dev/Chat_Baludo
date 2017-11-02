@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import baludo.chat.com.br.chat_baludo.Fragment.ContatosFragment;
+
 /**
  * Created by Jean on 14/10/2017.
  */

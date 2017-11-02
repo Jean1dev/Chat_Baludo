@@ -28,6 +28,7 @@ import com.koushikdutta.ion.Ion;
 
 import java.util.List;
 
+import baludo.chat.com.br.chat_baludo.Adapter.ContatosAdapter;
 import baludo.chat.com.br.chat_baludo.ChatsActivity;
 import baludo.chat.com.br.chat_baludo.DataBase.SQLiteHelper;
 import baludo.chat.com.br.chat_baludo.Model.Contato;
