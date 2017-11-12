@@ -1,7 +1,6 @@
 package baludo.chat.com.br.chat_baludo.Fragment;
 
 import android.annotation.TargetApi;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,18 +18,20 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import baludo.chat.com.br.chat_baludo.Adapter.ChatsAdapter;
 import baludo.chat.com.br.chat_baludo.ChatActivity;
 import baludo.chat.com.br.chat_baludo.ChatsActivity;
 import baludo.chat.com.br.chat_baludo.DataBase.SQLiteHelper;
 import baludo.chat.com.br.chat_baludo.Model.Chat;
 import baludo.chat.com.br.chat_baludo.Model.Contato;
 import baludo.chat.com.br.chat_baludo.R;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by Jean on 02/11/2017.
  */
 
-public class ConversasFragment extends Fragment {
+public class ConversasFragment extends android.support.v4.app.Fragment {
 
     ListView listChat = null;
     List<Chat> list = null;
