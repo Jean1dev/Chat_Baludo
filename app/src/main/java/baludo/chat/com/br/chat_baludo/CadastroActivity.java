@@ -86,7 +86,7 @@ public class CadastroActivity extends AppCompatActivity {
                 //FIM DO BLOCO DE VALIDAÇÃO
 
                 if (error == 0) {
-                    String URL = "https://localhost/chat/metodo";
+                    String URL = "http://neuraapi-net.umbler.net/methods/insert_user.php";
                     String photoFile = "";
 
                     try {

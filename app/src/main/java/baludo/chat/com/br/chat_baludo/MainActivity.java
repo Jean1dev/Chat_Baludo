@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText txt_id = (EditText) findViewById(R.id.txt_id);
-                EditText txt_senha = (EditText) findViewById(R.id.txtSenha);
+                EditText txt_senha = (EditText) findViewById(R.id.txt_senha);
 
                 int error = 0;
 
@@ -62,16 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(error == 0){
-                    String URL = "https://localhost/chat/metodo";
+                    String URL = "http://neuraapi-net.umbler.net/methods/login_user.php";
 
                     SharedPreferences preferences = getBaseContext().getSharedPreferences("USER_INFORMATION", Context.MODE_PRIVATE);
                     String SECUTIRY_TOKEN = preferences.getString("token_usuario", "");
 
                     Ion.with(getBaseContext())
                             .load(URL)
-                            .setBodyParameter("id_usuario", txt_id.getText().toString())
-                            .setBodyParameter("senha_usuario", txt_senha.getText().toString())
-                            .setBodyParameter("token_usuario", SECUTIRY_TOKEN)
+                            .setBodyParameter("email_user", txt_id.getText().toString())
+                            .setBodyParameter("senha_user", txt_senha.getText().toString())
+                            .setBodyParameter("token_user", SECUTIRY_TOKEN)
                             .asJsonObject()
                             .setCallback(new FutureCallback<JsonObject>() {
                                 @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                         preferences.putInt("id_usuario", result.get("retorno").getAsInt());
                                         preferences.putString("nome_usuario", result.get("nome_usuario").getAsString());
                                         preferences.putString("email_usuario", result.get("email_usuario").getAsString());
-                                        preferences.putString("foto_usuario", result.get("foto_usuario").getAsString());
+                                        preferences.putString("photo_usuario", result.get("photo_usuario").getAsString());
                                         preferences.commit();
 
                                         SaveContact(result.get("retorno").getAsInt());
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SaveContact(final int id){
-        String URL = "http://localhost/chat/metodo";
+        String URL = "http://neuraapi-net.umbler.net/methods/get_all_contacts.php";
 
         Ion.with(getBaseContext())
                 .load(URL)

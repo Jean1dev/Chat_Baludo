@@ -94,7 +94,7 @@ public class ContatosFragment extends Fragment {
                         SharedPreferences preferences = getActivity().getSharedPreferences("USER_INFORMATION", Context.MODE_PRIVATE);
                         final String id_user = String.valueOf(preferences.getInt("id_usuario", 0));
 
-                        String URL = "http://192.168.25.16/chat/add_contact.php";
+                        String URL = "http://neuraapi-net.umbler.net/methods/add_contact.php";
 
                         Ion.with(getContext())
                                 .load(URL)

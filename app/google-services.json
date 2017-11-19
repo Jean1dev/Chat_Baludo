@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "174791755433",
+    "firebase_url": "https://chatbaludo.firebaseio.com",
+    "project_id": "chatbaludo",
+    "storage_bucket": "chatbaludo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174791755433:android:afc3ef9a22989d7d",
+        "android_client_info": {
+          "package_name": "baludo.chat.com.br.chat_baludo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174791755433-38g6ru4hsvm7rfkcjfbs5rnm0ple0cdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCliIjwRPMbmLNJuQWINtuq3bNJv9qxdSo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
